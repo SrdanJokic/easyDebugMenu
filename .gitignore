@@ -115,4 +115,6 @@ fabric.properties
 
 ### MacOS garbage files
 .DS_Store
+
+### Others
 easyDebugMenu.sln.DotSettings.user
