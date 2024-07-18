@@ -5,13 +5,27 @@
 // 
 // Copyright (c) 2024 Srdan Jokic
 
+using System;
+
 namespace EasyDebugMenu.Components;
 
 public static class DebugMenu
 {
+    public static event Action OnDisplayed;
+    public static event Action OnHidden;
+    
     // TODO: Add alignment options
     public static void Display()
     {
+        var layout = new HorizontalLayoutGroup();
+        var horizontal = layout.CreateHorizontalLayoutGroup();
         
+        OnDisplayed?.Invoke();
+    }
+
+    public static void Hide()
+    {
+        // TODO: Hide all elements
+        OnHidden?.Invoke();
     }
 }

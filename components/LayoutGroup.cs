@@ -14,10 +14,20 @@ namespace EasyDebugMenu.Components;
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 public abstract partial class LayoutGroup : DebugElement
 {
+    // TODO: In ReDraw iterate through all of these in reverse depth tree order and redraw them?
     private readonly List<DebugElement> Elements = new();
 
-    internal LayoutGroup() { } 
+    internal LayoutGroup() { }
 
+    public virtual HorizontalLayoutGroup CreateHorizontalLayoutGroup()
+    {
+        var hGroup = new HorizontalLayoutGroup();
+        
+        AddChild(hGroup);
+        Elements.Add(hGroup);
+        return hGroup;
+    }
+    
     public virtual Button CreateButton(string title, Action onClick, bool enabled = true)
     {
         var button = new Button(title, onClick, enabled);
@@ -26,6 +36,6 @@ public abstract partial class LayoutGroup : DebugElement
         Elements.Add(button);
         return button;
     }
-
+    
     public abstract void Clear();
 }

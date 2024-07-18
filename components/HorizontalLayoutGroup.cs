@@ -5,11 +5,18 @@
 // 
 // Copyright (c) 2024 Srdan Jokic
 
+using Godot;
+
 namespace EasyDebugMenu.Components;
 
 public partial class HorizontalLayoutGroup : LayoutGroup
 {
-    internal HorizontalLayoutGroup() { }
+    private VFlowContainer _flowContainer;
+    
+    internal HorizontalLayoutGroup()
+    {
+        _flowContainer = new VFlowContainer();
+    }
     
     public override void ReDraw()
     {

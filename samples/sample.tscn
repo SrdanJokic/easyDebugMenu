@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5dfwk4jn7kxv"]
+
+[ext_resource type="Script" path="res://samples/Sample.cs" id="1_jroub"]
+
+[node name="Sample" type="Node"]
+script = ExtResource("1_jroub")
