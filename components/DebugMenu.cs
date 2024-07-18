@@ -19,6 +19,7 @@ public static class DebugMenu
     {
         var layout = new HorizontalLayoutGroup();
         var horizontal = layout.CreateHorizontalLayoutGroup();
+        horizontal.CreateButton("Title", null);
         
         OnDisplayed?.Invoke();
     }
