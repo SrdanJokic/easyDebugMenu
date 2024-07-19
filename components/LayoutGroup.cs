@@ -12,10 +12,10 @@ using System.Diagnostics.CodeAnalysis;
 namespace EasyDebugMenu.Components;
 
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-public abstract partial class LayoutGroup : DebugElement
+public abstract partial class LayoutGroup : Element
 {
     // TODO: In ReDraw iterate through all of these in reverse depth tree order and redraw them?
-    private readonly List<DebugElement> Elements = new();
+    private readonly List<Element> Elements = new();
 
     internal LayoutGroup() { }
 
