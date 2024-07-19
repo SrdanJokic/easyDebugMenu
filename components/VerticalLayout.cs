@@ -1,4 +1,4 @@
-// HorizontalLayoutGroup.cs
+// VerticalLayout.cs
 // 
 // This script is licensed under the MIT License.
 // See the LICENSE file in the root of the repository for more details.
@@ -9,11 +9,11 @@ using Godot;
 
 namespace EasyDebugMenu.Components;
 
-public class HorizontalLayoutGroup : LayoutGroup<VFlowContainer>
+public class VerticalLayout : Layout<HFlowContainer>
 {
-    internal HorizontalLayoutGroup()
+    public VerticalLayout()
     {
-        Delegate = new VFlowContainer();
+        Delegate = new HFlowContainer();
     }
     
     public override void Clear()

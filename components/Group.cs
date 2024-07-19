@@ -7,8 +7,21 @@
 
 namespace EasyDebugMenu.Components;
 
-public class Group
+public abstract class Group
 {
+    public abstract Button GetToggleButton();
+
+    // TODO: Create a method that takes in a full screen panel element and then each admin can override it as they want
+    //  The buttons should be auto-created based on the public parameters from here and should invoke the method above
+    //  which shows or hides the full screen panel on toggle
+    
+    // TODO: Also add group "connections" which connect a group to a DebugMenu with a builder pattern. Something like:
+    //  var debugMenuConfig = new DebugMenuConfigBuilder(menuParent)
+    //    .WithGroup<DevGroup1>();
+    //    .WithGroup<DevGroup2>();
+    //    .Build();
+    //  DebugMenu.Show(debugMenuConfig);
+
     // TODO: A group is a generic abstract element that can be inherited by others
     //  The idea is to have each group define a "title" which will be shown either on the left or the right
     //  and then implement a set of controls on it's own, however it wants. It's going to receive a 

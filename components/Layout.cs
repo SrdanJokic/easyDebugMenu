@@ -12,14 +12,22 @@ using Godot;
 namespace EasyDebugMenu.Components;
 
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-public abstract class LayoutGroup<T> : Element<T> where T : FlowContainer 
+public abstract class Layout<T> : Element<T> where T : FlowContainer 
 {
-    public virtual HorizontalLayoutGroup CreateHorizontalLayoutGroup()
+    public virtual HorizontalLayout CreateHorizontalLayout()
     {
-        var hGroup = new HorizontalLayoutGroup();
+        var layout = new HorizontalLayout();
         
-        Delegate.AddChild(hGroup.Delegate);
-        return hGroup;
+        Delegate.AddChild(layout.Delegate);
+        return layout;
+    }
+
+    public virtual VerticalLayout CreateVerticalLayout()
+    {
+        var layout = new VerticalLayout();
+        
+        Delegate.AddChild(layout.Delegate);
+        return layout;
     }
     
     public virtual Button CreateButton(string title, Action onClick, bool enabled = true)

@@ -23,10 +23,10 @@ public static class DebugMenu
             throw new ArgumentNullException(nameof(root));
         }
         
-        var layout = new HorizontalLayoutGroup();
+        var layout = new HorizontalLayout();
         root.AddChild(layout.Delegate);
         
-        var horizontal = layout.CreateHorizontalLayoutGroup();
+        var horizontal = layout.CreateHorizontalLayout();
         horizontal.CreateButton("Title", null);
         
         OnDisplayed?.Invoke();
