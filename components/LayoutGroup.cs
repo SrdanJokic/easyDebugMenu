@@ -6,25 +6,19 @@
 // Copyright (c) 2024 Srdan Jokic
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Godot;
 
 namespace EasyDebugMenu.Components;
 
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-public abstract partial class LayoutGroup : Element
+public abstract class LayoutGroup<T> : Element<T> where T : FlowContainer 
 {
-    // TODO: In ReDraw iterate through all of these in reverse depth tree order and redraw them?
-    private readonly List<Element> Elements = new();
-
-    internal LayoutGroup() { }
-
     public virtual HorizontalLayoutGroup CreateHorizontalLayoutGroup()
     {
         var hGroup = new HorizontalLayoutGroup();
         
-        AddChild(hGroup);
-        Elements.Add(hGroup);
+        Delegate.AddChild(hGroup.Delegate);
         return hGroup;
     }
     
@@ -32,8 +26,7 @@ public abstract partial class LayoutGroup : Element
     {
         var button = new Button(title, onClick, enabled);
 
-        AddChild(button);
-        Elements.Add(button);
+        Delegate.AddChild(button.Delegate);
         return button;
     }
     

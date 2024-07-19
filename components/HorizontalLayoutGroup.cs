@@ -9,20 +9,13 @@ using Godot;
 
 namespace EasyDebugMenu.Components;
 
-public partial class HorizontalLayoutGroup : LayoutGroup
+public class HorizontalLayoutGroup : LayoutGroup<VFlowContainer>
 {
-    private VFlowContainer _flowContainer;
-    
     internal HorizontalLayoutGroup()
     {
-        _flowContainer = new VFlowContainer();
+        Delegate = new VFlowContainer();
     }
     
-    public override void ReDraw()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Clear()
     {
         throw new System.NotImplementedException();

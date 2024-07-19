@@ -10,7 +10,7 @@ using System;
 
 namespace EasyDebugMenu.Components;
 
-public abstract partial class Element : Node
+public abstract class Element<T> where T : Node
 {
-    public abstract void ReDraw();
+    public T Delegate { get; protected set; }
 }

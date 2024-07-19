@@ -10,26 +10,20 @@ using Godot;
 
 namespace EasyDebugMenu.Components;
 
-public partial class Button : Element
+public class Button : Element<Godot.Button>
 {
     private string _title;
     private Action _onClick;
     private bool _enabled;
-    private Godot.Button _button;
     
     internal Button(string title, Action onClick, bool enabled = true)
     {
-        _button = new Godot.Button();
-        _button.Name = $"Button_{title.Replace(' ', '_')}";
-        _button.Text = title;
+        Delegate = new Godot.Button();
+        Delegate.Name = $"Button_{title.Replace(' ', '_')}";
+        Delegate.Text = title;
         
         _title = title;
         _onClick = onClick;
         _enabled = enabled;
-    }
-
-    public override void ReDraw()
-    {
-        throw new System.NotImplementedException();
     }
 }

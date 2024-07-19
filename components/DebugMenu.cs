@@ -24,7 +24,7 @@ public static class DebugMenu
         }
         
         var layout = new HorizontalLayoutGroup();
-        root.AddChild(layout);
+        root.AddChild(layout.Delegate);
         
         var horizontal = layout.CreateHorizontalLayoutGroup();
         horizontal.CreateButton("Title", null);
