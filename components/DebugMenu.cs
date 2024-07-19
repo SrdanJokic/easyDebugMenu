@@ -6,6 +6,7 @@
 // Copyright (c) 2024 Srdan Jokic
 
 using System;
+using Godot;
 
 namespace EasyDebugMenu.Components;
 
@@ -15,9 +16,16 @@ public static class DebugMenu
     public static event Action OnHidden;
     
     // TODO: Add alignment options
-    public static void Display()
+    public static void Display(Node root)
     {
+        if (root == null)
+        {
+            throw new ArgumentNullException(nameof(root));
+        }
+        
         var layout = new HorizontalLayoutGroup();
+        root.AddChild(layout);
+        
         var horizontal = layout.CreateHorizontalLayoutGroup();
         horizontal.CreateButton("Title", null);
         

@@ -14,13 +14,15 @@ namespace EasyDebugMenu.Samples;
 
 public partial class Sample : Node
 {
+    [Export] private Node _debugMenuRoot;
+    
     private Button _displayButton;
     
     public override void _Ready()
     {
         _displayButton = new Button();
         _displayButton.Text = "Show Easy Debug Menu";
-        _displayButton.Pressed += DebugMenu.Display;
+        _displayButton.Pressed += () => DebugMenu.Display(_debugMenuRoot);
         AddChild(_displayButton);
     }
 
