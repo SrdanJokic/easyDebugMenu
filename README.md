@@ -40,6 +40,14 @@ class Sample : Node
 }
 ```
 
+The list of currently-available controls. Keep in mind that only the `Layout` elements can create and assign other elements:
+
+| Element           | Description                                                                  |
+|-------------------|------------------------------------------------------------------------------|
+| Vertical Layout   | Wrapper for `Godot.HFlowContainer`. Maintains a vertical list of elements.   |
+| Horizontal Layout | Wrapper for `Godot.VFlowContainer`. Maintains a horizontal list of elements. |
+| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.                |
+
 ## How To
 
 The idea behind using the `EasyDebugMenu` is to implement your own so-called `Groups` and then assign them to the menu which displays them. By implementing a `Group` you provide a `Button` (rendered on the side) which will display a larger menu of all elements available to you, depending on how you implemented a group.
@@ -67,12 +75,3 @@ In-game:
 
 <!--TODO-->
 ![Screenshot of a displayed debug menu with some options on the right now]()
-
-With that in mind, here is a list of all currently-available elements. Keep in mind that only the `Layout` elements can create and assign other elements:
-
-| Element           | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| Vertical Layout   | Wrapper for `Godot.HFlowContainer`. Maintains a vertical list of elements.   |
-| Horizontal Layout | Wrapper for `Godot.VFlowContainer`. Maintains a horizontal list of elements. |
-| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.                |
-
