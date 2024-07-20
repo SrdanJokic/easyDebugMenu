@@ -4,7 +4,7 @@ An easily-extensible generic on-screen in-game debug menu for C#.
 
 ## Installation
 
-Godot only supports marking editor plugins as "plugins" unfortunately. For this reason, feel free to simply include the EasyPool/Scripts in your project folder.
+Godot only supports marking editor plugins as "plugins" unfortunately. For this reason, feel free to simply include the repo files in your project folder.
 
 ## Quick Start
 
