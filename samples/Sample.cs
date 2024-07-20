@@ -6,8 +6,6 @@
 // Copyright (c) 2024 Srdan Jokic
 
 using Godot;
-using System;
-using EasyDebugMenu.Components;
 using Button = Godot.Button;
 
 namespace EasyDebugMenu.Samples;

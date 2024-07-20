@@ -5,7 +5,9 @@
 // 
 // Copyright (c) 2024 Srdan Jokic
 
-namespace EasyDebugMenu.Components;
+using EasyDebugMenu.Components;
+
+namespace EasyDebugMenu;
 
 public abstract class Group
 {
