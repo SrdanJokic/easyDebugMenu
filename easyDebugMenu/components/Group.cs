@@ -9,7 +9,7 @@ namespace EasyDebugMenu.Components;
 
 public abstract class Group
 {
-    public abstract Button GetToggleButton();
+    public abstract Button CreateToggleButton();
 
     // TODO: Create a method that takes in a full screen panel element and then each admin can override it as they want
     //  The buttons should be auto-created based on the public parameters from here and should invoke the method above

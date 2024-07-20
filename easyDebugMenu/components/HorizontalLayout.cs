@@ -15,9 +15,4 @@ public class HorizontalLayout : Layout<VFlowContainer>
     {
         Delegate = new VFlowContainer();
     }
-    
-    public override void Clear()
-    {
-        throw new System.NotImplementedException();
-    }
 }

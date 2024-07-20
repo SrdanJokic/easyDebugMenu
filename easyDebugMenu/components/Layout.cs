@@ -18,7 +18,7 @@ public abstract class Layout<T> : Element<T> where T : FlowContainer
     {
         var layout = new HorizontalLayout();
         
-        Delegate.AddChild(layout.Delegate);
+        Add(layout.Delegate);
         return layout;
     }
 
@@ -26,7 +26,7 @@ public abstract class Layout<T> : Element<T> where T : FlowContainer
     {
         var layout = new VerticalLayout();
         
-        Delegate.AddChild(layout.Delegate);
+        Add(layout.Delegate);
         return layout;
     }
     
@@ -34,9 +34,18 @@ public abstract class Layout<T> : Element<T> where T : FlowContainer
     {
         var button = new Button(title, onClick, enabled);
 
-        Delegate.AddChild(button.Delegate);
+        Add(button.Delegate);
         return button;
     }
-    
-    public abstract void Clear();
+
+    public virtual void Add(Node child)
+    {
+        Delegate.AddChild(child);
+    }
+
+    public virtual void Remove(Node child)
+    {
+        Delegate.RemoveChild(child);
+        child.QueueFree();
+    }
 }

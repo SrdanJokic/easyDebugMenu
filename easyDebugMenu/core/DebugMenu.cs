@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using EasyDebugMenu.Components;
 using Godot;
+using Button = EasyDebugMenu.Components.Button;
 
 namespace EasyDebugMenu;
 
@@ -16,39 +17,73 @@ public static class DebugMenu
 {
     public static event Action OnDisplayed;
     public static event Action OnHidden;
-
-    private static List<Group> _groups;
+    public static event Action<Group> OnGroupAdded;
+    public static event Action<Group> OnGroupRemoved;
     
-    // TODO: Add alignment options
+    private static Dictionary<Group, Button> _groups;
+    private static VerticalLayout _layout;
+    private static Node _root;
+    
     public static void Display(Node root)
     {
-        if (root == null)
-        {
-            throw new ArgumentNullException(nameof(root));
-        }
-        
-        var layout = new HorizontalLayout();
-        root.AddChild(layout.Delegate);
-        
-        var horizontal = layout.CreateHorizontalLayout();
-        horizontal.CreateButton("Title", null);
-        
+        _root = root ?? throw new ArgumentNullException(nameof(root));
+        _layout ??= new VerticalLayout();
+
+        _root.AddChild(_layout.Delegate);
         OnDisplayed?.Invoke();
     }
-
-    private static void Draw()
-    {
-        
-    }
     
-    public static void Add(Group group)
-    {
-        _groups.Add(group);
-    }
-
     public static void Hide()
     {
-        // TODO: Hide all elements
+        if (_root == null || _layout == null)
+        {
+            return;
+        }
+        
+        _root.RemoveChild(_layout.Delegate);
         OnHidden?.Invoke();
+    }
+    
+    /// <summary>
+    /// Adds a group to the list and draws its button.
+    /// </summary>
+    /// <returns>True if the group was added; otherwise false.</returns>
+    public static bool Add(Group group)
+    {
+        _layout ??= new VerticalLayout();
+        _groups ??= new Dictionary<Group, Button>();
+
+        if (!_groups.ContainsKey(group))
+        {
+            _groups.Add(group, group.CreateToggleButton());
+            _layout.Add(_groups[group].Delegate);
+            
+            OnGroupAdded?.Invoke(group);
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Removes a group from the list and destroys its button and display.
+    /// </summary>
+    /// <returns>True if the group was removed; otherwise false.</returns>
+    public static bool Remove(Group group)
+    {
+        _layout ??= new VerticalLayout();
+        _groups ??= new Dictionary<Group, Button>();
+
+        if (!_groups.ContainsKey(group))
+        {
+            // TODO: Also, destroy any panel it has spawned
+            _layout.Remove(_groups[group].Delegate);
+            _groups.Remove(group);
+            
+            OnGroupRemoved?.Invoke(group);
+            return true;
+        }
+
+        return false;
     }
 }
