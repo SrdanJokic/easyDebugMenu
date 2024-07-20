@@ -9,10 +9,10 @@ using Godot;
 
 namespace EasyDebugMenu.Components;
 
-public class HorizontalLayout : Layout<VFlowContainer>
+public class HorizontalLayout : Layout<HBoxContainer>
 {
     internal HorizontalLayout()
     {
-        Delegate = new VFlowContainer();
+        Delegate = new HBoxContainer();
     }
 }

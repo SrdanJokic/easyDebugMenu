@@ -42,11 +42,11 @@ class Sample : Node
 
 The list of currently-available controls. Keep in mind that only the `Layout` elements can create and assign other elements:
 
-| Element           | Description                                                                  |
-|-------------------|------------------------------------------------------------------------------|
-| Vertical Layout   | Wrapper for `Godot.HFlowContainer`. Maintains a vertical list of elements.   |
-| Horizontal Layout | Wrapper for `Godot.VFlowContainer`. Maintains a horizontal list of elements. |
-| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.                |
+| Element           | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| Vertical Layout   | Wrapper for `Godot.VBoxContainer`. Maintains a vertical list of elements.   |
+| Horizontal Layout | Wrapper for `Godot.HBoxContainer`. Maintains a horizontal list of elements. |
+| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.               |
 
 ## How To
 

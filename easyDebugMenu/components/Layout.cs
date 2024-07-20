@@ -12,7 +12,7 @@ using Godot;
 namespace EasyDebugMenu.Components;
 
 [SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
-public abstract class Layout<T> : Element<T> where T : FlowContainer 
+public abstract class Layout<T> : Element<T> where T : BoxContainer 
 {
     public virtual HorizontalLayout CreateHorizontalLayout()
     {
