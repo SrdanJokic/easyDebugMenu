@@ -1,4 +1,4 @@
-// VerticalLayout.cs
+// HorizontalSplit.cs
 // 
 // This script is licensed under the MIT License.
 // See the LICENSE file in the root of the repository for more details.
@@ -9,11 +9,11 @@ using Godot;
 
 namespace EasyDebugMenu.Components;
 
-public class VerticalLayout : Layout<VBoxContainer>
+public class HorizontalSplit : Split<HSplitContainer>
 {
-    public VerticalLayout(Control.LayoutPreset preset = Control.LayoutPreset.FullRect)
+    public HorizontalSplit(Control.LayoutPreset preset = Control.LayoutPreset.FullRect)
     {
-        Delegate = new VBoxContainer();
+        Delegate = new HSplitContainer();
         Delegate.SetAnchorsPreset(preset);
     }
 }

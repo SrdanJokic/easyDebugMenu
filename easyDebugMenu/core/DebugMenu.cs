@@ -22,24 +22,32 @@ public static class DebugMenu
     
     private static Dictionary<Group, Button> _groups;
     private static VerticalLayout _buttonsContainer;
-    private static Node _root;
+    private static HorizontalSplit _root;
     
     public static void Display(Node parent = null)
     {
-        _root ??= CreateRoot(parent); 
-        _buttonsContainer ??= new VerticalLayout();
-        _root.AddChild(_buttonsContainer.Delegate);
-        OnDisplayed?.Invoke();
+        if (_root == null)
+        {
+            _buttonsContainer ??= new VerticalLayout();
+
+            _root = CreateRoot(parent); 
+            _root.Push(_buttonsContainer.Delegate);
+            OnDisplayed?.Invoke();
+        }
+        else if (!_root.CanProcess())
+        {
+            _root.SetProcess(true);
+            OnDisplayed?.Invoke();
+        }
     }
 
-    private static HSplitContainer CreateRoot(Node parent = null)
+    private static HorizontalSplit CreateRoot(Node parent = null)
     {
-        var root = new HSplitContainer();
-        root.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        var root = new HorizontalSplit();
         
         if (GodotObject.IsInstanceValid(parent))
         {
-            parent!.AddChild(root);
+            parent!.AddChild(root.Delegate);
         }
 
         return root;
@@ -47,13 +55,19 @@ public static class DebugMenu
     
     public static void Hide()
     {
-        if (_root == null || _buttonsContainer == null)
+        if (_root == null)
         {
+            // TODO: Throw exception instead
+            // TODO: Support silencing exceptions
+            // TODO: Add rider attribute for exceptions thrown
             return;
         }
-        
-        _root.RemoveChild(_buttonsContainer.Delegate);
-        OnHidden?.Invoke();
+
+        if (_root.CanProcess())
+        {
+            _root.SetProcess(false);
+            OnHidden?.Invoke();
+        }
     }
     
     /// <summary>

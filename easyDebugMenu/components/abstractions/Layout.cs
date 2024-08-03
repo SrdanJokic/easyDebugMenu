@@ -6,12 +6,10 @@
 // Copyright (c) 2024 Srdan Jokic
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 namespace EasyDebugMenu.Components;
 
-[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 public abstract class Layout<T> : Element<T> where T : BoxContainer 
 {
     public virtual HorizontalLayout CreateHorizontalLayout()
