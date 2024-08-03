@@ -14,39 +14,41 @@ using EasyDebugMenu.Components;
 
 class SampleGroup : Group
 {
-	// Implement the behaviour of your group here
+    // Implement the behaviour of your group here
 }
 
 class AnotherSampleGroup : Group
 {
-	// Implement the behaviour of your group here
+    // Implement the behaviour of your group here
 }
 
 class Sample : Node
 {
-	public override _Ready()
-	{
-		// Assign your group(s)
-		DebugMenu.Add(new SampleGroup());
-		
-		// Display the debug menu as a child of the sample node
-		DebugMenu.Display(this);
-		
-		// Groups can be added and removed dynamically during display as well
-		var anotherGroup = new AnotherSampleGroup();
-		DebugMenu.Add(anotherGroup);
-		DebugMenu.Remove(anotherGroup);
-	}
+    public override _Ready()
+    {
+        // Assign your group(s)
+        DebugMenu.Add(new SampleGroup());
+        
+        // Display the debug menu as a child of the sample node
+        DebugMenu.Display(this);
+        
+        // Groups can be added and removed dynamically during display as well
+        var anotherGroup = new AnotherSampleGroup();
+        DebugMenu.Add(anotherGroup);
+        DebugMenu.Remove(anotherGroup);
+    }
 }
 ```
 
 The list of currently-available controls. Keep in mind that only the `Layout` elements can create and assign other elements:
 
-| Element           | Description                                                                 |
-|-------------------|-----------------------------------------------------------------------------|
-| Vertical Layout   | Wrapper for `Godot.VBoxContainer`. Maintains a vertical list of elements.   |
-| Horizontal Layout | Wrapper for `Godot.HBoxContainer`. Maintains a horizontal list of elements. |
-| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.               |
+| Element           | Description                                                                                                        |
+|-------------------|--------------------------------------------------------------------------------------------------------------------|
+| Vertical Layout   | Wrapper for `Godot.VBoxContainer`. Maintains a vertical list of elements.                                          |
+| Horizontal Layout | Wrapper for `Godot.HBoxContainer`. Maintains a horizontal list of elements.                                        |
+| Button            | Wrapper for `Godot.Button`. Invokes an "Action" when pressed.                                                      |
+| Vertical Split    | Wrapper for `Godot.VSplitContainer`. Splits two children controls vertically and adds a size control in between.   |
+| Horizontal Split  | Wrapper for `Godot.HSplitContainer`. Splits two children controls horizontally and adds a size control in between. |
 
 ## How To
 
