@@ -14,29 +14,29 @@ using EasyDebugMenu.Components;
 
 class SampleGroup : Group
 {
-    // Implement the behaviour of your group here
+	// Implement the behaviour of your group here
 }
 
 class AnotherSampleGroup : Group
 {
-    // Implement the behaviour of your group here
+	// Implement the behaviour of your group here
 }
 
 class Sample : Node
 {
-    public override _Ready()
-    {
-        // Assign your group(s)
-        DebugMenu.Add(new SampleGroup());
-        
-        // Display the debug menu as a child of the sample node
-        DebugMenu.Display(this);
-        
-        // Groups can be added and removed dynamically during display as well
-        var anotherGroup = new AnotherSampleGroup();
-        DebugMenu.Add(anotherGroup);
-        DebugMenu.Remove(anotherGroup);
-    }
+	public override _Ready()
+	{
+		// Assign your group(s)
+		DebugMenu.Add(new SampleGroup());
+		
+		// Display the debug menu as a child of the sample node
+		DebugMenu.Display(this);
+		
+		// Groups can be added and removed dynamically during display as well
+		var anotherGroup = new AnotherSampleGroup();
+		DebugMenu.Add(anotherGroup);
+		DebugMenu.Remove(anotherGroup);
+	}
 }
 ```
 

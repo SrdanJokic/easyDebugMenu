@@ -12,8 +12,6 @@ namespace EasyDebugMenu.Samples;
 
 public partial class Sample : Node
 {
-    [Export] private Node _debugMenuRoot;
-    
     private Button _displayButton;
     
     public override void _Ready()
@@ -26,7 +24,8 @@ public partial class Sample : Node
     {
         _displayButton = new Button();
         _displayButton.Text = "Show Easy Debug Menu";
-        _displayButton.Pressed += () => DebugMenu.Display(_debugMenuRoot);
+        _displayButton.Name = "DebugMenuBtn";
+        _displayButton.Pressed += () => DebugMenu.Display(this);
         AddChild(_displayButton);
     }
 

@@ -21,26 +21,38 @@ public static class DebugMenu
     public static event Action<Group> OnGroupRemoved;
     
     private static Dictionary<Group, Button> _groups;
-    private static VerticalLayout _layout;
+    private static VerticalLayout _buttonsContainer;
     private static Node _root;
     
-    public static void Display(Node root)
+    public static void Display(Node parent = null)
     {
-        _root = root ?? throw new ArgumentNullException(nameof(root));
-        _layout ??= new VerticalLayout();
-
-        _root.AddChild(_layout.Delegate);
+        _root ??= CreateRoot(parent); 
+        _buttonsContainer ??= new VerticalLayout();
+        _root.AddChild(_buttonsContainer.Delegate);
         OnDisplayed?.Invoke();
+    }
+
+    private static HSplitContainer CreateRoot(Node parent = null)
+    {
+        var root = new HSplitContainer();
+        root.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        
+        if (GodotObject.IsInstanceValid(parent))
+        {
+            parent!.AddChild(root);
+        }
+
+        return root;
     }
     
     public static void Hide()
     {
-        if (_root == null || _layout == null)
+        if (_root == null || _buttonsContainer == null)
         {
             return;
         }
         
-        _root.RemoveChild(_layout.Delegate);
+        _root.RemoveChild(_buttonsContainer.Delegate);
         OnHidden?.Invoke();
     }
     
@@ -50,13 +62,13 @@ public static class DebugMenu
     /// <returns>True if the group was added; otherwise false.</returns>
     public static bool Add(Group group)
     {
-        _layout ??= new VerticalLayout();
+        _buttonsContainer ??= new VerticalLayout();
         _groups ??= new Dictionary<Group, Button>();
 
         if (!_groups.ContainsKey(group))
         {
             _groups.Add(group, group.CreateToggleButton());
-            _layout.Add(_groups[group].Delegate);
+            _buttonsContainer.Add(_groups[group].Delegate);
             
             OnGroupAdded?.Invoke(group);
             return true;
@@ -71,13 +83,13 @@ public static class DebugMenu
     /// <returns>True if the group was removed; otherwise false.</returns>
     public static bool Remove(Group group)
     {
-        _layout ??= new VerticalLayout();
+        _buttonsContainer ??= new VerticalLayout();
         _groups ??= new Dictionary<Group, Button>();
 
         if (!_groups.ContainsKey(group))
         {
             // TODO: Also, destroy any panel it has spawned
-            _layout.Remove(_groups[group].Delegate);
+            _buttonsContainer.Remove(_groups[group].Delegate);
             _groups.Remove(group);
             
             OnGroupRemoved?.Invoke(group);
