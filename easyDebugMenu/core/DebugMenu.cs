@@ -21,17 +21,17 @@ public static class DebugMenu
     public static event Action<Group> OnGroupRemoved;
     
     private static Dictionary<Group, Button> _groups;
-    private static VerticalLayout _buttonsContainer;
+    private static VerticalLayout _buttons;
     private static HorizontalSplit _root;
     
     public static void Display(Node parent = null)
     {
         if (_root == null)
         {
-            _buttonsContainer ??= new VerticalLayout();
+            _buttons ??= new VerticalLayout();
 
             _root = CreateRoot(parent); 
-            _root.Push(_buttonsContainer.Delegate);
+            _root.Push(_buttons.Delegate);
             OnDisplayed?.Invoke();
         }
         else if (!_root.CanProcess())
@@ -41,6 +41,7 @@ public static class DebugMenu
         }
     }
 
+    // todo add left wide as default but only expand to full if second child exists
     private static HorizontalSplit CreateRoot(Node parent = null)
     {
         var root = new HorizontalSplit();
@@ -76,13 +77,13 @@ public static class DebugMenu
     /// <returns>True if the group was added; otherwise false.</returns>
     public static bool Add(Group group)
     {
-        _buttonsContainer ??= new VerticalLayout();
+        _buttons ??= new VerticalLayout();
         _groups ??= new Dictionary<Group, Button>();
 
         if (!_groups.ContainsKey(group))
         {
             _groups.Add(group, group.CreateToggleButton());
-            _buttonsContainer.Add(_groups[group].Delegate);
+            _buttons.Add(_groups[group].Delegate);
             
             OnGroupAdded?.Invoke(group);
             return true;
@@ -97,13 +98,13 @@ public static class DebugMenu
     /// <returns>True if the group was removed; otherwise false.</returns>
     public static bool Remove(Group group)
     {
-        _buttonsContainer ??= new VerticalLayout();
+        _buttons ??= new VerticalLayout();
         _groups ??= new Dictionary<Group, Button>();
 
         if (!_groups.ContainsKey(group))
         {
             // TODO: Also, destroy any panel it has spawned
-            _buttonsContainer.Remove(_groups[group].Delegate);
+            _buttons.Remove(_groups[group].Delegate);
             _groups.Remove(group);
             
             OnGroupRemoved?.Invoke(group);

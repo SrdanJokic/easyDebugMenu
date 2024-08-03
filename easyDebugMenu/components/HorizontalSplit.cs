@@ -11,9 +11,11 @@ namespace EasyDebugMenu.Components;
 
 public class HorizontalSplit : Split<HSplitContainer>
 {
-    public HorizontalSplit(Control.LayoutPreset preset = Control.LayoutPreset.FullRect)
+    protected override Control.LayoutPreset OneOrNoChildrenPreset => Control.LayoutPreset.LeftWide;
+    protected override Control.LayoutPreset TwoChildrenPreset => Control.LayoutPreset.FullRect;
+
+    public HorizontalSplit()
     {
         Delegate = new HSplitContainer();
-        Delegate.SetAnchorsPreset(preset);
     }
 }

@@ -14,12 +14,18 @@ public abstract class Split<T> : Element<T> where T : SplitContainer
 {
     public Node element1 { get; private set; }
     public Node element2 { get; private set; }
+
+    // These layout presets are used to align the control to a minimum-possible size if it's empty or
+    // if it contains only a single element. If the control is full (has both elements), we expand it fully
+    protected abstract Control.LayoutPreset OneOrNoChildrenPreset { get; } 
+    protected abstract Control.LayoutPreset TwoChildrenPreset { get; }
     
     public virtual void Push(Node child)
     {
         if (!GodotObject.IsInstanceValid(element1))
         {
             Delegate.AddChild(child);
+            Delegate.SetAnchorsPreset(OneOrNoChildrenPreset);
             element1 = child;
             return;
         }
@@ -27,6 +33,7 @@ public abstract class Split<T> : Element<T> where T : SplitContainer
         if (!GodotObject.IsInstanceValid(element2))
         {
             Delegate.AddChild(child);
+            Delegate.SetAnchorsPreset(TwoChildrenPreset);
             element2 = child;
             return;
         }
@@ -39,6 +46,7 @@ public abstract class Split<T> : Element<T> where T : SplitContainer
         if (GodotObject.IsInstanceValid(element2))
         {
             Delegate.RemoveChild(element2);
+            Delegate.SetAnchorsPreset(OneOrNoChildrenPreset);
             element2.QueueFree();
             return;
         }
@@ -46,6 +54,7 @@ public abstract class Split<T> : Element<T> where T : SplitContainer
         if (GodotObject.IsInstanceValid(element1))
         {
             Delegate.RemoveChild(element1);
+            Delegate.SetAnchorsPreset(OneOrNoChildrenPreset);
             element1.QueueFree();
             return;
         }

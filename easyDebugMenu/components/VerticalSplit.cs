@@ -11,6 +11,9 @@ namespace EasyDebugMenu.Components;
 
 public class VerticalSplit : Split<VSplitContainer>
 {
+    protected override Control.LayoutPreset OneOrNoChildrenPreset => Control.LayoutPreset.TopWide;
+    protected override Control.LayoutPreset TwoChildrenPreset => Control.LayoutPreset.FullRect;
+
     public VerticalSplit()
     {
         Delegate = new VSplitContainer();
