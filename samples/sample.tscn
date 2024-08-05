@@ -4,16 +4,3 @@
 
 [node name="Sample" type="Node"]
 script = ExtResource("1_jroub")
-
-[node name="Button2" type="Button" parent="."]
-offset_left = 43.0
-offset_right = 521.0
-offset_bottom = 195.0
-text = "Sample test hello"
-
-[node name="Button3" type="Button" parent="."]
-offset_left = 43.0
-offset_top = 421.0
-offset_right = 521.0
-offset_bottom = 616.0
-text = "Needs to be clickable"

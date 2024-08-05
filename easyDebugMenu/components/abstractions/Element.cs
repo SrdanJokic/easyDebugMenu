@@ -12,11 +12,14 @@ namespace EasyDebugMenu.Components;
 
 public abstract class Element<T> where T : Node
 {
+    // TODO: Remove as many usages as possible and use the methods under instead
     public T Delegate { get; protected set; }
+
+    public bool HasValidInstance => GodotObject.IsInstanceValid(Delegate);
 
     public void SetProcess(bool enable)
     {
-        if (Delegate == null)
+        if (!HasValidInstance)
         {
             throw new InvalidOperationException("Failed to set active state of element; Delegate was null");
         }
@@ -26,11 +29,21 @@ public abstract class Element<T> where T : Node
 
     public bool CanProcess()
     {
-        if (Delegate == null)
+        if (!HasValidInstance)
         {
             throw new InvalidOperationException("Failed to fetch active state of element; Delegate was null");
         }
         
         return Delegate.CanProcess();
+    }
+
+    public void QueueFree()
+    {
+        if (!HasValidInstance)
+        {
+            throw new InvalidOperationException("Failed to free the element; Delegate was null");
+        }
+
+        Delegate.Free();
     }
 }

@@ -11,8 +11,10 @@ namespace EasyDebugMenu.Samples;
 
 public class SampleGroup : Group
 {
-    public override Button CreateToggleButton()
+    public override string Name => "Sample Group";
+
+    public override void Show(VerticalLayout layout)
     {
-        return new Button("Sample Group Button", null);
+        layout.CreateButton("Button in the layout", null);
     }
 }

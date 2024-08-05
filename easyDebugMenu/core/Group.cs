@@ -5,18 +5,23 @@
 // 
 // Copyright (c) 2024 Srdan Jokic
 
+using System;
 using EasyDebugMenu.Components;
+using Godot;
+using Button = EasyDebugMenu.Components.Button;
 
 namespace EasyDebugMenu;
 
 public abstract class Group
 {
-    public abstract Button CreateToggleButton();
+    public abstract string Name { get; }
+
+    public abstract void Show(VerticalLayout layout);
 
     // TODO: Create a method that takes in a full screen panel element and then each admin can override it as they want
     //  The buttons should be auto-created based on the public parameters from here and should invoke the method above
     //  which shows or hides the full screen panel on toggle
-    
+
     // TODO: Also add group "connections" which connect a group to a DebugMenu with a builder pattern. Something like:
     //  var debugMenuConfig = new DebugMenuConfigBuilder(menuParent)
     //    .WithGroup<DevGroup1>();

@@ -21,11 +21,15 @@ public static class DebugMenu
     public static event Action<Group> OnGroupRemoved;
     
     private static Dictionary<Group, Button> _groups;
-    private static VerticalLayout _buttons;
     private static HorizontalSplit _root;
+    private static VerticalLayout _buttons;
+
+    private static GroupToggler _groupToggler;
     
     public static void Display(Node parent = null)
     {
+        _groupToggler ??= new GroupToggler();
+        
         if (_root == null)
         {
             _buttons ??= new VerticalLayout();
@@ -82,8 +86,8 @@ public static class DebugMenu
 
         if (!_groups.ContainsKey(group))
         {
-            _groups.Add(group, group.CreateToggleButton());
-            _buttons.Add(_groups[group].Delegate);
+            var button = _buttons.CreateButton(group.Name, () => _ = _groupToggler.Toggle(_root));
+            _groups.Add(group, button);
             
             OnGroupAdded?.Invoke(group);
             return true;
