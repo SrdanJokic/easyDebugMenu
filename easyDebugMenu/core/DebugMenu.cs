@@ -45,7 +45,6 @@ public static class DebugMenu
         }
     }
 
-    // todo add left wide as default but only expand to full if second child exists
     private static HorizontalSplit CreateRoot(Node parent = null)
     {
         var root = new HorizontalSplit();
@@ -86,7 +85,7 @@ public static class DebugMenu
 
         if (!_groups.ContainsKey(group))
         {
-            var button = _buttons.CreateButton(group.Name, () => _ = _groupToggler.Toggle(_root));
+            var button = _buttons.CreateButton(group.Name, () => ToggleGroup(group));
             _groups.Add(group, button);
             
             OnGroupAdded?.Invoke(group);
@@ -94,6 +93,14 @@ public static class DebugMenu
         }
 
         return false;
+    }
+
+    private static void ToggleGroup(Group group)
+    {
+        if (_groupToggler.Toggle(_root))
+        {
+            group.Show(_groupToggler.Content);
+        }
     }
 
     /// <summary>

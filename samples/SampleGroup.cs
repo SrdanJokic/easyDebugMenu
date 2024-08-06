@@ -6,6 +6,7 @@
 // Copyright (c) 2024 Srdan Jokic
 
 using EasyDebugMenu.Components;
+using Godot;
 
 namespace EasyDebugMenu.Samples;
 
@@ -15,6 +16,7 @@ public class SampleGroup : Group
 
     public override void Show(VerticalLayout layout)
     {
-        layout.CreateButton("Button in the layout", null);
+        GD.Print("Show");
+        layout.CreateButton("Button in the layout", () => { GD.Print("Pressed a button"); });
     }
 }

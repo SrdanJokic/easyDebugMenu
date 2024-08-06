@@ -12,18 +12,15 @@ namespace EasyDebugMenu.Components;
 
 public class Button : Element<Godot.Button>
 {
-    private string _title;
-    private Action _onClick;
-    private bool _enabled;
-    
     internal Button(string title, Action onClick, bool enabled = true)
     {
         Delegate = new Godot.Button();
         Delegate.Name = $"Button_{title.Replace(' ', '_')}";
         Delegate.Text = title;
-        
-        _title = title;
-        _onClick = onClick;
-        _enabled = enabled;
+
+        if (onClick != null)
+        {
+            Delegate.Pressed += onClick;
+        }
     }
 }

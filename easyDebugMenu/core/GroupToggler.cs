@@ -13,16 +13,15 @@ namespace EasyDebugMenu;
 
 public class GroupToggler
 {
-    public bool IsContentShown => _content != null;
-    
-    private VerticalLayout _content;
+    public bool IsContentShown => Content != null;
+    public VerticalLayout Content { get; private set; }
     
     public bool Toggle(HorizontalSplit parent)
     {
         if (IsContentShown)
         {
-            _content.QueueFree();
-            _content = null;
+            Content.QueueFree();
+            Content = null;
         }
         else
         {
@@ -31,8 +30,8 @@ public class GroupToggler
                 throw new ArgumentNullException(nameof(parent));
             }
             
-            _content = new VerticalLayout();
-            parent.Push(_content.Delegate);
+            Content = new VerticalLayout();
+            parent.Push(Content.Delegate);
         }
 
         return IsContentShown;
