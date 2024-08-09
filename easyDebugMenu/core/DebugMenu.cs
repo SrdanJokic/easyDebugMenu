@@ -32,8 +32,7 @@ public static class DebugMenu
         
         if (_root == null)
         {
-            _buttons ??= new VerticalLayout();
-
+            _buttons = new VerticalLayout();
             _root = CreateRoot(parent); 
             _root.Push(_buttons.Delegate);
             OnDisplayed?.Invoke();
